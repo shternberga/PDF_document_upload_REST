@@ -1,6 +1,6 @@
 # PDF document upload
 
-![PDF Document Upload](./assets/uploadApp.gif)
+![PDF Document Upload](./public/assets/uploadApp.gif)
 
 > Single page app with Thumbnails of the first page of PDF document.
 
