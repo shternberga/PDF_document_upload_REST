@@ -12,7 +12,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel 5.6 Vue JS axios post - ItSolutionStuff.com</title>
+    <title>PDF Uploads App</title>
 
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
 
