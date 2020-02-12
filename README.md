@@ -1,4 +1,4 @@
-# PDF document upload
+# PDF document uploads
 
 ![PDF Document Upload](./public/assets/uploadApp.gif)
 
