@@ -16,20 +16,21 @@
         <hr/>
         <div class="row">
             <div class="col-md-4 col-lg-3"
-                 style="margin-bottom: 20px"
-                 v-for="pdf in laravelData.data" :key="pdf.id"
+                 v-for="document in laravelData.data" :key="document.id"
             >
                 <div class="card">
-                    <a @click="
-                    modalPdfShow = !modalPdfShow;
-                    fileInModal = pdf.file;
-                ">
+                    <a
+                        @click="fullScreenModalDocument = document"
+                        id="modalActivate"
+                        data-toggle="modal"
+                        data-target="#exampleModalPreview"
+                    >
                         <img class="card-img-top"
-                             :src="`uploads/thumbnails/${pdf.file}.jpg`"
-                             :alt="pdf.file" width="100%" height="180px">
+                             :src="`uploads/thumbnails/${document.file}.jpg`"
+                             :alt="document.file" width="100%" height="180px">
                     </a>
                     <div class="card-body flex justify-content-between">
-                        <h6 class="card-title text-center">{{pdf.file}}</h6>
+                        <h6 class="card-title text-center">{{document.file}}</h6>
                     </div>
                 </div>
             </div>
@@ -45,36 +46,37 @@
             <UploadsModal/>
         </b-modal>
 
-        <b-modal
-            size="xl"
-            centered
-            id="modal-1"
-            v-model="modalPdfShow">
-            <PdfModal :fileInModal="fileInModal"/>
-        </b-modal>
-
+        <div
+            class="modal fade right"
+            id="exampleModalPreview"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalPreviewLabel"
+            aria-hidden="true"
+        >
+            <FullScreenModal :fullScreenModalDocument="fullScreenModalDocument"/>
+        </div>
     </div>
 </template>
 
 <script>
     import UploadsModal from "./UploadsModal";
-    import PdfModal from "./PdfModal";
+    import FullScreenModal from "./FullScreenModal";
+
     export default {
         name: "gallery",
         components: {
             UploadsModal,
-            PdfModal
+            FullScreenModal
         },
         mounted() {
             console.log('Component mounted (components/Gallery.vue).')
         },
         data() {
             return {
-                file: '',
                 laravelData: {},
                 modalUploadShow: false,
-                modalPdfShow: false,
-                fileInModal: ''
+                fullScreenModalDocument: ''
             }
         },
         created() {
@@ -104,10 +106,6 @@
 </script>
 
 <style scoped>
-    .card-img-top {
-        position: relative;
-        z-index: 1;
-    }
 
     .add-document-container {
         margin: 70px 0 30px 0;
@@ -115,6 +113,7 @@
 
     .card:hover {
         border: 1px solid grey;
+        transition: all 0.4s ease 0s;
     }
 
     .button_cont {
@@ -138,5 +137,6 @@
         background: #434343;
         transition: all 0.4s ease 0s;
     }
+
 </style>
 

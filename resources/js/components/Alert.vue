@@ -13,9 +13,6 @@
         props: ['alert'],
         mounted() {
             console.log('Component mounted (components/Alert.vue).')
-        },
-        data() {
-            return {}
         }
     }
 </script>
