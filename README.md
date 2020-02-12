@@ -1,5 +1,7 @@
 # PDF document upload
 
+![PDF Document Upload](./assets/uploadApp.gif)
+
 > Single page app with Thumbnails of the first page of PDF document.
 
 > When clicking on thumbnail, full document is shown in full screen modal. 
