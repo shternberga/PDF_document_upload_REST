@@ -5,7 +5,7 @@
                     <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
                 </button>
                 <div class="modal-body">
-                    <embed class="pdf" :src="`uploads/${fullScreenModalDocument.file}`" :alt="DocumentInModal"/>
+                    <embed class="pdf" :src="fullScreenModalDocument.location" :alt="fullScreenModalDocument.file"/>
                 </div>
             </div>
         </div>

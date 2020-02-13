@@ -2,13 +2,8 @@
 
 use Illuminate\Http\Request;
 
-
-Route::middleware('auth:api')->get('v1/users', function (Request $request) {
-    return $request->user();
-});
-
 Route::apiResources(
     [
-        'v1/documents' => 'API\DocumentController'
+        'v1/documents' => 'API\v1\DocumentController'
     ]
 );

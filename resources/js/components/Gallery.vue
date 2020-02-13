@@ -26,7 +26,7 @@
                         data-target="#exampleModalPreview"
                     >
                         <img class="card-img-top"
-                             :src="`uploads/thumbnails/${document.file}.jpg`"
+                             :src="`${document.location}_thumbnail.jpg`"
                              :alt="document.file" width="100%" height="180px">
                     </a>
                     <div class="card-body flex justify-content-between">
@@ -38,11 +38,10 @@
         <pagination :data="laravelData" @pagination-change-page="getResults" class="pagination"></pagination>
 
         <b-modal
-            size="s"
             centered
             id="modal-2"
             v-model="modalUploadShow"
-            ok-only>
+            hide-footer>
             <UploadsModal/>
         </b-modal>
 

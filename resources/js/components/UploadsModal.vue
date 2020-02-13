@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="content">
         <alert v-show="alert.active"
                :alert="alert"
         />
@@ -83,6 +83,10 @@
                     this.alert.message = 'No file chosen';
                     return false;
                 }
+                if (file === 'added') {
+                    this.alert.message = 'Reselect file';
+                    return false;
+                }
                 if (file.type !== 'application/pdf') {
                     this.alert.message = 'Select PDF file!';
                     return false;
@@ -91,12 +95,9 @@
                     this.alert.message = 'File too big';
                     return false;
                 }
-                if (file === 'added') {
-                    this.alert.message = 'Reselect file';
-                    return false;
-                }
                 return true;
             }
         }
     }
 </script>
+

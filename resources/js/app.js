@@ -18,7 +18,7 @@ Vue.use(require('vue-resource'));
 Vue.use(VueFullscreen.default)
 
 Vue.component('pagination', require('laravel-vue-pagination'));
-Vue.component('index', require('./components/index.vue').default);
+Vue.component('App', require('./App.vue').default);
 
 const app = new Vue({
     el: '#app',
