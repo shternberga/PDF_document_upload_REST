@@ -8,7 +8,7 @@
                 <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
             </label>
             <div v-if="uploading">
-                <img src="/assets/upload.gif" width="30" alt="Upload circle">
+                <img src="/assets/loader.gif" width="30" alt="Loader">
             </div>
             <br>
             <button class="btn btn-primary" v-on:click="submitFile()">Upload document</button>
