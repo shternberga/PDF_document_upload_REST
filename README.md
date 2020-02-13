@@ -48,6 +48,7 @@ DB_PASSWORD=YourPassword
 
 Be sure, you have Imagick driver installed on your system
 - I used this <a href="https://tecadmin.net/install-imagemagick-on-linux/" target="_blank">instructions</a> for installing Imagemagick on Linux.
+- And check <a href="https://stackoverflow.com/questions/52998331/imagemagick-security-policy-pdf-blocking-conversion" target="_blank">ImageMagick security policy for 'PDF'</a>.
 
 
 
