@@ -26,7 +26,7 @@
                         data-target="#exampleModalPreview"
                     >
                         <img class="card-img-top"
-                             :src="`${document.location}_thumbnail.jpg`"
+                             :src="document.thumbnail_location"
                              :alt="document.file" width="100%" height="180px">
                     </a>
                     <div class="card-body flex justify-content-between">

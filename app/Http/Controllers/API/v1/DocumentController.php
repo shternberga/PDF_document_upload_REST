@@ -4,7 +4,9 @@ namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
 use App\Document;
-use App\ThumbnailManager\ThumbnailManager;
+use App\Http\Requests\UploadRequest;
+use App\ThumbnailManager\ImagickThumbnailManager;
+use App\ThumbnailManager\ThumbnailManagerInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -12,11 +14,11 @@ class DocumentController extends Controller
 {
 
     /**
-     * @var ThumbnailManager
+     * @var ImagickThumbnailManager
      */
     private $thumbnailManager;
 
-    public function __construct(ThumbnailManager $thumbnailManager)
+    public function __construct(ThumbnailManagerInterface $thumbnailManager)
     {
         $this->thumbnailManager = $thumbnailManager;
     }
@@ -38,26 +40,18 @@ class DocumentController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(UploadRequest $request)
     {
-        request()->validate([
-            'file' => 'required|mimes:pdf|max:2048',
+        $uploadsDirectory = 'uploads/';
+        $originalName = strtolower($request->file('file')->getClientOriginalName());
+        $documentLocation = $request->file('file')->move($uploadsDirectory, time() . $originalName);
+
+        (new Document())->create([
+            'location' => $documentLocation,
+            'thumbnail_location' => $this->thumbnailManager->make($documentLocation),
+            'file' => $originalName
         ]);
-        if ($request->hasFile('file')) {
 
-            $uploadsDirectory = 'uploads/';
-            $originalName = strtolower($request->file('file')->getClientOriginalName());
-            $documentLocation = $request->file('file')->move($uploadsDirectory, time().$originalName);
-
-            (new Document())->create([
-                'location' => $documentLocation,
-                'file' => $originalName
-            ]);
-
-            $this->thumbnailManager->make(
-                $documentLocation
-            );
-        }
         return response()->json([
             'success' => true,
             'message' => 'Great! File has been successfully uploaded.'
